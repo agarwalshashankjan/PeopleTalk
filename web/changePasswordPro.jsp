@@ -26,9 +26,11 @@
             System.out.println("q3");
             int rs=db.changePass(email, newpwd);
             if(rs!=-1){
-                
-            session.setAttribute("msg1","password updated succesfull");
-            response.sendRedirect("changepassword.jsp");
+            
+            session.setAttribute("msg","password updated succesfull");
+            response.sendRedirect("Logout.jsp");
+//            session.setAttribute("msg1","password updated succesfull");
+//            response.sendRedirect("changepassword.jsp");
             }else{
                 session.setAttribute("msg","something went wrong");
                 response.sendRedirect("changepassword.jsp");
@@ -43,10 +45,10 @@
             }
         
         
-        else if(oldpwd.equals(pass) && !(newpwd.equals(confirmpwd))){
+        else if(!(oldpwd.equals(pass)) && newpwd.equals(confirmpwd)){
             System.out.println("q5");
                 
-            session.setAttribute("msg1","pas dint match");
+            session.setAttribute("msg1","Wrong credentials");
             response.sendRedirect("changepassword.jsp");
             }
         }

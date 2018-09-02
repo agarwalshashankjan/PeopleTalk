@@ -81,7 +81,7 @@
 								</div><!--end form group-->
 								<div class="form-group">
 									<label for="dob" class="control-label">Date of Birth: <font color="grey"><%=(String)h.get("dob")%></font></label>
-								</div>
+								</div></div>
 								<!--end form group-->
 								<div class="col-lg-10 form-group">
 									<label for="state" class="control-label">Address: <font color="grey"><%=(String)h.get("area")%>, <%=(String)h.get("city")%>, <%=(String)h.get("state")%></font></label>

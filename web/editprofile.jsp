@@ -37,6 +37,21 @@
 			</div>
 		</div>
 	</nav><!-- end of navbar-->
+         <%
+                            String m=(String)session.getAttribute("msg");
+                            if(m!=null){
+                                
+                            %>
+                            <div class="panel">
+                                <div class="panel-body bg-danger text-center">
+                                <%=m%>
+                            </div>
+                            </div>
+                            <%
+                            }
+                            else{
+                                 session.setAttribute("msg",null);
+                            }%>
 		<div class="container">
 			<section>
 				<div class="panel panel-default">
@@ -148,20 +163,20 @@
 								</div><!--end form group-->
 								<div class="form-group">
                                                                     
-									<label for="state" class="col-lg-2 control-label">State: Your state-<b> <%=h.get("state")%></b></label>
+									<label for="state" class="col-lg-2 control-label">State: </label>
 									<div class="col-lg-5">
 										<select class="form-control" name="state" class="form-control" id="listBox" onchange='selct_district(this.value)'>
 											
 										</select>
-									</div>
+									</div>Your state-<b> <%=h.get("state")%></b>
 								</div><!--end form group-->
 								<div class="form-group">
-									<label for="city" class="col-lg-2 control-label">City: Your City-<b> <%=h.get("city")%></b></label>
+									<label for="city" class="col-lg-2 control-label">City: </label>
 									<div class="col-lg-5">
 										<select class="form-control" name="city" id='secondlist'>
 											
 										</select>
-									</div>
+									</div>Your City-<b> <%=h.get("city")%></b>
 								</div><!--end form group-->
 								<div class="form-group">
 									<label for="area" class="col-lg-2 control-label">Area:</label>

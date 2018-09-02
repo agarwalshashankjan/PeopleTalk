@@ -4,7 +4,7 @@ import java.sql.*;
 
 public class DbConnect {
 	private Connection con;
-	private PreparedStatement checkUser, getUser, insertUser,changePass,getpass;
+	private PreparedStatement checkUser, getUser, insertUser,changePass,getpass,changePhoto;
         private Statement st;
         
 	public Statement getSt(){
@@ -16,6 +16,7 @@ public class DbConnect {
 			Class.forName("com.mysql.jdbc.Driver");
 			con=DriverManager.getConnection("jdbc:mysql://localhost:3306/ptalk","root","incapp");
                         st=con.createStatement();
+                        changePhoto=con.prepareStatement("update user_info set photo=? where email=?");
 			getUser=con.prepareStatement("select * from user_info where email=? and pass=? ");
                         changePass=con.prepareStatement("update user_info set pass=? where email=?");
 			checkUser=con.prepareStatement("select * from user_info where email=? ");
@@ -27,6 +28,21 @@ public class DbConnect {
 			ex.printStackTrace();
 		}
 	}
+        
+        public String changePhoto(String e,java.io.InputStream im) {
+		try {
+			changePhoto.setString(2, e);
+			changePhoto.setBinaryStream(1, im);
+			int x=changePhoto.executeUpdate();
+			if(x==1)
+				return "Done";
+			else
+				return "Error";
+		}catch(Exception ex){
+                    ex.printStackTrace();
+                    return "Exception";
+                }
+            }
         
         public ResultSet getUser(String e, String p) {
 		try {

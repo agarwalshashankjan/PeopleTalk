@@ -144,13 +144,7 @@
 										<input type="text" name="area" class="form-control" id="area" placeholder="Enter your Area" required/>
 									</div>
 								</div><!--end form group-->
-								<div class="form-group">
-									<label for="photo" class="col-lg-3 control-label">Photo:</label>
-									<div class="col-lg-9">
-										<input type="file" name="photo" class="form-control" id="photo" />
-										
-									</div>
-								</div><!--end form group-->
+								
 								<div class="form-group">
 									<label for="pass" class="col-lg-3 control-label">Password:</label>
 									<div class="col-lg-9">
