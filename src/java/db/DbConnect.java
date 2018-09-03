@@ -4,7 +4,7 @@ import java.sql.*;
 
 public class DbConnect {
 	private Connection con;
-	private PreparedStatement checkUser, getUser, insertUser,changePass,getpass,changePhoto;
+	private PreparedStatement checkUser, getUser, getFile, insertUser,changePass,getpass,changePhoto,getSearchUser,getMsg,insertMsg;
         private Statement st;
         
 	public Statement getSt(){
@@ -17,17 +17,65 @@ public class DbConnect {
 			con=DriverManager.getConnection("jdbc:mysql://localhost:3306/ptalk","root","incapp");
                         st=con.createStatement();
                         changePhoto=con.prepareStatement("update user_info set photo=? where email=?");
+                        getFile=con.prepareStatement("select fname,ufile from ptalk where pid=?");
 			getUser=con.prepareStatement("select * from user_info where email=? and pass=? ");
+                        insertMsg=con.prepareStatement("insert into ptalk (sid,rid,date,msg,fname,ufile) values (?,?,now(),?,?,?) ");
+                        getMsg=con.prepareStatement("select * from ptalk where sid=? and rid=?");
                         changePass=con.prepareStatement("update user_info set pass=? where email=?");
 			checkUser=con.prepareStatement("select * from user_info where email=? ");
 			insertUser=con.prepareStatement("insert into user_info values (?,?,?,?,?,?,?,?,?,?) ");
                         getpass=con.prepareStatement("select * from user_info where email=?");
-//			getSearchUser=con.prepareStatement("select * from user_info where state=? or city=? or area=? ");
+			getSearchUser=con.prepareStatement("select * from user_info where state=? and city=? and area like ? and email !=?");
 		}
 		catch(Exception ex) {
 			ex.printStackTrace();
 		}
 	}
+        
+        public ResultSet getMsg(String s, String r){
+        try{        
+            getMsg.setString(1, s);
+            getMsg.setString(2, r);
+            ResultSet rs=getMsg.executeQuery();
+            return rs;
+        }catch(Exception ex){
+            ex.printStackTrace();
+            return null;
+        }
+    }
+        
+        public ResultSet getFile(int p){
+        try{        
+            getFile.setInt(1, p);
+            ResultSet r=getFile.executeQuery();
+            if(r.next()){
+                return r;
+            }else{
+                return null;
+            }
+        }catch(Exception ex){
+            ex.printStackTrace();
+            return null;
+        }
+    }
+        
+    public String insertMsg(String s,String r,String m,String fn,java.io.InputStream in) {
+        try{        
+            insertMsg.setString(1, s);
+            insertMsg.setString(2, r);
+            insertMsg.setString(3, m);
+            insertMsg.setString(4, fn);
+            insertMsg.setBinaryStream(5, in);
+           int x=insertMsg.executeUpdate();
+           if(x==1)
+            return "Done";
+           else 
+            return "Error";
+        }catch(Exception ex){
+            ex.printStackTrace();
+            return "Exception";
+        }
+    }
         
         public String changePhoto(String e,java.io.InputStream im) {
 		try {
@@ -57,6 +105,22 @@ public class DbConnect {
 		}
 		return null;
 	}
+        
+        public ResultSet getSearchUser(String s, String c, String a,String e) {
+		try {
+			getSearchUser.setString(1, s);
+			getSearchUser.setString(2, c);
+			getSearchUser.setString(3, "%"+a+"%");
+			getSearchUser.setString(4, e);
+			ResultSet rs=getSearchUser.executeQuery();
+                        return rs;
+		}
+		catch(Exception ex) {
+                    ex.printStackTrace();
+                    return null;	
+		}
+	}
+        
 	public int changePass(String e, String p) {
 		try {
 			changePass.setString(2, e);

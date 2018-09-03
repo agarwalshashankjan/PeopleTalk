@@ -19,11 +19,9 @@
         System.out.println(email);
         ResultSet x=db.getpass(email);
         String pass=x.getString("pass");
-        System.out.println("pass");
         
-        System.out.println(pass);
         if(oldpwd.equals(pass) && newpwd.equals(confirmpwd)){
-            System.out.println("q3");
+           
             int rs=db.changePass(email, newpwd);
             if(rs!=-1){
             

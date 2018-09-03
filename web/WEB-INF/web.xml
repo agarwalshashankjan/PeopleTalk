@@ -12,4 +12,14 @@
         <url-pattern>/register</url-pattern>
     </servlet-mapping>
     
+    <servlet>
+        <servlet-name>GetPhoto</servlet-name>
+        <servlet-class>Servlets.GetPhoto</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetPhoto</servlet-name>
+        <url-pattern>/GetPhoto</url-pattern>
+    </servlet-mapping>
+    
+    
 </web-app>
