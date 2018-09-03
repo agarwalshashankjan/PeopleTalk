@@ -12,4 +12,31 @@
         <url-pattern>/register</url-pattern>
     </servlet-mapping>
     
+    <servlet>
+        <servlet-name>DownloadFile</servlet-name>
+        <servlet-class>Servlets.DownloadFile</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DownloadFile</servlet-name>
+        <url-pattern>/DownloadFile</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>GetPhoto</servlet-name>
+        <servlet-class>Servlets.GetPhoto</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetPhoto</servlet-name>
+        <url-pattern>/GetPhoto</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>TalkPro</servlet-name>
+        <servlet-class>Servlets.TalkPro</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TalkPro</servlet-name>
+        <url-pattern>/TalkPro</url-pattern>
+    </servlet-mapping>
+    
 </web-app>

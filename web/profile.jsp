@@ -48,24 +48,27 @@
 												<%
                  
                 db.DbConnect db=(db.DbConnect)application.getAttribute("DBCon");
+               
                 if(db==null){
                     db=new db.DbConnect(); 
+                    
                     application.setAttribute("DBCon", db);
                 }
+               
                 ResultSet rs=db.checkUser((String)h.get("email"));
+               
                 
-                System.out.println(rs.getString(2));
-                if(rs.getBinaryStream(10).read()!=-1){
-                    
-                    System.out.println(h.get("email"));
+                if(rs.getBinaryStream(10)!=null){
+                    System.out.println("hello1");
                  %>
                 <img src="GetPhoto?email=<%=(String)h.get("email")%>" width="120" height="150">                            
                 <%   
                 }else{
+System.out.println("hello2");
                  %>
                 <img src="img/xyz.jpg" width="120" height="150">                           
                 <%    
-                }
+                }System.out.println("hello7");
                                             %>
 					</div>
 					<div class="col-lg-6">
@@ -104,7 +107,7 @@
 								<div class="form-group">
 									<label for="state" class="col-lg-3 control-label">State:</label>
 									<div class="col-lg-9">
-										<select class="form-control" id="listBox" onchange='selct_district(this.value)'>
+										<select class="form-control" name="state" id="listBox" onchange='selct_district(this.value)'>
 											
 										</select>
 									</div>
@@ -112,7 +115,7 @@
 								<div class="form-group">
 									<label for="city" class="col-lg-3 control-label">City:</label>
 										<div class="col-lg-9">
-											<select class="form-control" id='secondlist'>
+											<select class="form-control" name="city" id='secondlist'>
 										</select>
 									</div>
 								</div>

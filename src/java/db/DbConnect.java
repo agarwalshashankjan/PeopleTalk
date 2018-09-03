@@ -17,9 +17,9 @@ public class DbConnect {
 			con=DriverManager.getConnection("jdbc:mysql://localhost:3306/ptalk","root","incapp");
                         st=con.createStatement();
                         changePhoto=con.prepareStatement("update user_info set photo=? where email=?");
-                        getFile=con.prepareStatement("select fname,ufile from ptalk where pid=?");
+                        getFile=con.prepareStatement("select filename,ufile from ptalk where pid=?");
 			getUser=con.prepareStatement("select * from user_info where email=? and pass=? ");
-                        insertMsg=con.prepareStatement("insert into ptalk (sid,rid,date,msg,fname,ufile) values (?,?,now(),?,?,?) ");
+                        insertMsg=con.prepareStatement("insert into ptalk (sid,rid,udate,msg,filename,ufile) values (?,?,now(),?,?,?) ");
                         getMsg=con.prepareStatement("select * from ptalk where sid=? and rid=?");
                         changePass=con.prepareStatement("update user_info set pass=? where email=?");
 			checkUser=con.prepareStatement("select * from user_info where email=? ");

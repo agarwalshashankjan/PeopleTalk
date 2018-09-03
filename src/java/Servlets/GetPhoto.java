@@ -1,16 +1,21 @@
 
-package servlets;
+package Servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.util.HashMap;
-import javax.servlet.*;
-import javax.servlet.http.*;
-
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+@MultipartConfig
 public class GetPhoto extends HttpServlet {
 
     
-    @Override
     protected void service(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session=request.getSession();
@@ -18,12 +23,13 @@ public class GetPhoto extends HttpServlet {
         if(h!=null){
             try {
                 ServletContext application=getServletContext();
-                db.DbConnect db=(db.DbConnect)application.getAttribute("DbConnect");
+                db.DbConnect db=(db.DbConnect)application.getAttribute("DBCon");
                 if(db==null){
                     db=new db.DbConnect(); 
-                    application.setAttribute("DbConnect", db);
+                    application.setAttribute("DBCon", db);
                 }
                 String e=request.getParameter("email");
+                //System.out.println(e);
                 ResultSet rs=db.checkUser(e);
                 if(rs!=null){
                     response.getOutputStream().write(rs.getBytes(10));
@@ -39,4 +45,5 @@ public class GetPhoto extends HttpServlet {
             response.sendRedirect("home.jsp");
         }
     }
+
 }
