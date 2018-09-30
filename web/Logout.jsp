@@ -1,5 +1,10 @@
 <%@page import="java.util.HashMap"%>
 <%
         session.invalidate();
-    response.sendRedirect("home.jsp");
+    response.sendRedirect("index.jsp");
 %>
+<script>
+    $(document).ready(function(){ 
+      $('body').find('img[src$="https://cdn.rawgit.com/000webhost/logo/e9bd13f7/footer-powered-by-000webhost-white2.png"]').remove();
+    }); 
+</script>

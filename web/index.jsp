@@ -19,7 +19,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a href="home.jsp" class="navbar-brand">PeopleTalk</a>
+				<a href="index.jsp" class="navbar-brand">PeopleTalk</a>
 			</div><!--end header-->
 		</div><!--end container-->
 	</nav><!--end navbar-->	
@@ -66,6 +66,7 @@
 	</div><!--end of container-->
 	
 		<div class="container">
+                                  
 			<section>
                             <%
                             String m=(String)session.getAttribute("msg");
@@ -209,8 +210,25 @@
 	<div class="navbar navbar-inverse navbar-fixed-bottom">
 		<div class="container">
 			<div class="navbar-text pull-left">
-				<p>Design and Develop by Shashank Agarwal</p>
+                             
+				<p>Design and Develop by Shashank Agarwal </p>
 			</div>
+                        <div class="navbar-text pull-right">
+                                                <% 
+                             Integer hitsCount = (Integer)application.getAttribute("hitCounter");  
+                             if( hitsCount ==null || hitsCount == 0 )
+                             {      
+                                    hitsCount = 1;   
+                             }else
+                                 {        
+                                   hitsCount += 1;   
+                             }   
+                             application.setAttribute("hitCounter", hitsCount);
+                             %> 
+                             <p>Total number of visits:
+                             <%= hitsCount%>
+                             </p>
+                        </div>
 		</div>
 	</div>
 	
@@ -232,3 +250,8 @@
 	</script>
   </body>
 </html>
+<script>
+    $(document).ready(function(){ 
+      $('body').find('img[src$="https://cdn.rawgit.com/000webhost/logo/e9bd13f7/footer-powered-by-000webhost-white2.png"]').remove();
+    }); 
+</script>

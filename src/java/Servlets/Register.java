@@ -81,7 +81,7 @@ public class Register extends HttpServlet {
                     }else if(s.equalsIgnoreCase("Exception")){
                         session.setAttribute("msg","Registration Failed.(Exception Occured)");
                     }
-                    response.sendRedirect("home.jsp");
+                    response.sendRedirect("index.jsp");
                 }catch(Exception ex){
                     ex.printStackTrace();
 		}

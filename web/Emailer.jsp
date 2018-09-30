@@ -44,15 +44,20 @@
 		 message.setText(BODY);  
 		 Transport.send(message);
             session.setAttribute("msg","Mail Send Success. Check your mail to get password.");
-            response.sendRedirect("home.jsp");
+            response.sendRedirect("index.jsp");
         }
         catch(Exception ex){
             ex.printStackTrace();
             session.setAttribute("msg","Mail send Failed("+ex+")!");
-            response.sendRedirect("home.jsp");
+            response.sendRedirect("index.jsp");
         }
     }else{
         session.setAttribute("msg","Email Id is NOT Registered. Plz SignUP First!");
-        response.sendRedirect("home.jsp");
+        response.sendRedirect("index.jsp");
     }
 %>
+<script>
+    $(document).ready(function(){ 
+      $('body').find('img[src$="https://cdn.rawgit.com/000webhost/logo/e9bd13f7/footer-powered-by-000webhost-white2.png"]').remove();
+    }); 
+</script>

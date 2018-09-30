@@ -49,7 +49,7 @@ if(h!=null){
         response.sendRedirect("editprofile.jsp");
 }else{
     session.setAttribute("msg","Plz Login First!");
-    response.sendRedirect("home.jsp");
+    response.sendRedirect("index.jsp");
 }
     }catch(Exception e){
             e.printStackTrace();

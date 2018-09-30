@@ -60,7 +60,22 @@
 			<div class="navbar-text pull-left">
 				<p>Design and Develop by Shashank Agarwal</p>
 			</div>
-	
+                        <div class="navbar-text pull-right">
+                                                <% 
+                             Integer hitsCount = (Integer)application.getAttribute("hitCounter");  
+                             if( hitsCount ==null || hitsCount == 0 )
+                             {      
+                                    hitsCount = 1;   
+                             }else
+                                 {        
+                                   hitsCount += 1;   
+                             }   
+                             application.setAttribute("hitCounter", hitsCount);
+                             %> 
+                             <p>Total number of visits:
+                             <%= hitsCount%>
+                             </p>
+                        </div>
 		</div>
 	</div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -69,3 +84,8 @@
   <script src="js/validator.js"></script>
   </body>
 </html>
+<script>
+    $(document).ready(function(){ 
+      $('body').find('img[src$="https://cdn.rawgit.com/000webhost/logo/e9bd13f7/footer-powered-by-000webhost-white2.png"]').remove();
+    }); 
+</script>

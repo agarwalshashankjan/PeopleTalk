@@ -42,7 +42,7 @@ public class GetPhoto extends HttpServlet {
             }
         }else{
             session.setAttribute("msg","Plz Login First!");
-            response.sendRedirect("home.jsp");
+            response.sendRedirect("index.jsp");
         }
     }
 
